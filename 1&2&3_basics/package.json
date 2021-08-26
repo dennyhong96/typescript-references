@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"tsc *.ts --watch\" \"lite-server\""
+    "start": "concurrently \"tsc --watch\" \"lite-server\""
   },
   "keywords": [],
   "author": "",

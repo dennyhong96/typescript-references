@@ -8,6 +8,7 @@
     const result = n1 + n2;
     if (showResult) {
       console.log(`${resultPhrase}${result}`);
+      return;
     } else {
       return `${resultPhrase} ${result}`;
     }

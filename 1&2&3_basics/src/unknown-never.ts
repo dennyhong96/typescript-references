@@ -7,9 +7,8 @@
   // inputString = input; // typescript throws error with unkown, where it doesn't throw with any
   if (typeof input === "string") {
     inputString = input;
+    console.log({ inputString });
   }
-
-  console.log({ inputString });
 
   const generateError = (msg: string, code: number) => {
     // implicit never return type
@@ -17,6 +16,7 @@
   };
   generateError("Error", 400);
 
+  // @ts-ignore
   const neverReturn = () => {
     while (true) {}
   };
