@@ -1,5 +1,5 @@
 (function () {
-  // Input Validation
+  // INPUT VALIDATION
   interface Validatable {
     value: string | number;
     required?: boolean;
@@ -69,6 +69,40 @@
         return descriptor.value.bind(this);
       },
     };
+  }
+
+  // PROJECT LIST CLASS
+  class ProjectList {
+    templateElement: HTMLTemplateElement;
+    hostElement: HTMLDivElement;
+    element: HTMLElement;
+
+    constructor(private type: "active" | "finished") {
+      this.templateElement = document.querySelector("#project-list")!;
+      this.hostElement = document.querySelector("#app")!;
+
+      const importedNode = document.importNode(
+        this.templateElement.content,
+        true
+      );
+      this.element = importedNode.firstElementChild! as HTMLElement;
+      this.element.id = `${this.type}-projects`;
+
+      this.attach();
+      this.renderContent();
+    }
+
+    private attach() {
+      this.hostElement.insertAdjacentElement("beforeend", this.element);
+    }
+
+    private renderContent() {
+      const listId = `${this.type}-projects-list`;
+      const list = this.element.querySelector("ul")!;
+      list.id = listId;
+      const title = this.element.querySelector("h2")!;
+      title.textContent = `${this.type.toUpperCase()} PROJECTS`;
+    }
   }
 
   // PROJECT INPUT CLASS
@@ -163,4 +197,10 @@
 
   const projectInput = new ProjectInput();
   console.log({ projectInput });
+
+  const activeProjectList = new ProjectList("active");
+  console.log({ activeProjectList });
+
+  const finishedProjectList = new ProjectList("finished");
+  console.log({ finishedProjectList });
 })();
